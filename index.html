@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#070a09"><meta name="description" content="Requiem: your writing and character archive">
+<link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="icon-192.png">
+<title>Requiem</title>
+<style>
+:root{--bg:#070a09;--card:rgba(13,19,17,.62);--bd:rgba(47,181,146,.3);--tx:#f2ebd8;--soft:#9db3a8;--hd:#ead9ab;--ac:#2fb592;--gold:#dcc48a;--btn:#07120e;--in:rgba(13,19,17,.85)}
+body.light{--bg:#f1efe4;--card:rgba(250,249,241,.7);--bd:rgba(20,121,95,.35);--tx:#1b2622;--soft:#5b6a62;--hd:#0e5a48;--ac:#14795f;--gold:#8f6f24;--btn:#f6f2e2;--in:rgba(255,255,255,.8)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;font:17px/1.5 Georgia,'Times New Roman',serif;background:var(--bg) radial-gradient(800px 480px at 10% -5%,rgba(47,181,146,.18),transparent 60%) fixed;color:var(--tx);min-height:100vh}
+a{color:var(--ac)}h1,h2,h3{color:var(--hd);letter-spacing:.05em;font-weight:600;margin:.6rem 0}h1{font-size:1.6rem}h2{font-size:1.3rem}
+header{position:sticky;top:0;z-index:20;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.4rem;padding:.55rem max(.9rem,env(safe-area-inset-left));background:var(--card);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--gold)}
+.brand{font-size:1.2rem;letter-spacing:.14em;color:var(--hd);text-decoration:none}nav{display:flex;gap:.9rem;align-items:center;overflow-x:auto;white-space:nowrap}nav a{text-decoration:none;color:var(--tx)}
+main{max-width:860px;margin:0 auto;padding:1rem .9rem 4rem}
+.card,.cover,.row{background:var(--card);border:1px solid var(--bd);border-radius:14px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:inset 0 0 0 4px transparent,inset 0 0 0 5px color-mix(in srgb,var(--gold) 35%,transparent)}
+.card{padding:.9rem;margin:.7rem 0}.row{display:flex;align-items:center;gap:.5rem;padding:.55rem .8rem;margin:.4rem 0}.row .t{flex:1;min-width:0}
+.soft{color:var(--soft)}.grow{flex:1}
+button,.btn,input,select,textarea{font:inherit;color:var(--tx)}
+button,.btn{background:var(--ac);color:var(--btn);border:0;border-radius:10px;padding:.45rem .85rem;min-height:40px;cursor:pointer;text-decoration:none;display:inline-block}
+button.g{background:transparent;color:var(--tx);border:1px solid var(--bd)}button.d{background:#a33;color:#fff}
+input,select,textarea{width:100%;background:var(--in);border:1px solid var(--bd);border-radius:10px;padding:.5rem .65rem;margin:.2rem 0 .6rem;font-size:16px}
+label{display:block;font-size:.85rem;color:var(--soft)}label.i{display:flex;gap:.5rem;align-items:center;color:var(--tx);font-size:1rem}label.i input{width:auto;margin:0}
+.shelf{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.9rem;padding-bottom:.9rem;border-bottom:6px solid color-mix(in srgb,var(--gold) 50%,transparent)}
+.cover{aspect-ratio:2/3;display:flex;flex-direction:column;justify-content:flex-end;padding:.8rem;text-decoration:none;color:#f6efd8;text-align:left;background:linear-gradient(160deg,color-mix(in srgb,var(--c) 80%,#fff 20%),var(--c) 55%,#000 160%);border:1px solid var(--gold);cursor:pointer;transition:transform .2s}
+.cover:hover{transform:translateY(-4px)}.cover b{font-size:1.05rem;letter-spacing:.04em}.cover small{opacity:.8}.cover.add{background:var(--card);color:var(--ac);align-items:center;justify-content:center;font-size:2rem}.cover.add small{font-size:.9rem;color:var(--soft)}
+.ov{position:fixed;z-index:99;pointer-events:none;border-radius:6px;transition:all .55s cubic-bezier(.4,0,.2,1)}.ov.go{left:0!important;top:0!important;width:100vw!important;height:100vh!important;border-radius:0}
+.tabs{display:flex;gap:.4rem;margin:.6rem 0}.tabs a{padding:.4rem .9rem;border-radius:999px;border:1px solid var(--bd);text-decoration:none;color:var(--tx)}.tabs a.on{background:var(--ac);color:var(--btn)}
+.tools{display:flex;flex-wrap:wrap;gap:.35rem;margin:.5rem 0;position:sticky;top:var(--hh,3.4rem);z-index:10;padding:.3rem 0;background:var(--bg)}.tools button{min-width:42px}
+.ed{min-height:55vh;padding:1rem;background:var(--card);border:1px solid var(--bd);border-radius:14px;outline:none;font-size:1.1rem;line-height:1.75}.ed blockquote{border-left:3px solid var(--gold);margin:.5rem 0;padding-left:.8rem;color:var(--soft)}
+.chip{font-size:.75rem;padding:.05rem .5rem;border-radius:999px;border:1px solid var(--bd);color:var(--soft);margin-right:.25rem}
+.g2{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:.7rem}.g2 .card{margin:0}
+@media(max-width:600px){.g2{grid-template-columns:1fr 1fr}.shelf{grid-template-columns:1fr 1fr}}
+</style></head><body>
+<header><a class="brand" href="#/">✦ REQUIEM</a><nav><a href="#/">Shelf</a><a href="#/chars">Characters</a><a href="#/backup">Backup</a><button class="g" id="th" title="Theme">🌙</button></nav></header>
+<main id="app"></main>
+<script>
+const $=s=>document.querySelector(s),app=$('#app'),uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const today=()=>new Date(Date.now()-new Date().getTimezoneOffset()*6e4).toISOString().slice(0,10);
+const words=h=>{const t=(h||'').replace(/<[^>]*>/g,' ').replace(/&nbsp;/g,' ').trim();return t?t.split(/\s+/).length:0};
+const S={books:[],chapters:[],chars:[],rels:[],log:{},set:{}};
+const COLORS=[['Jade','#14795f'],['Burgundy','#7a1f3d'],['Midnight','#1d3557'],['Bronze','#6b4f1d'],['Forest','#2d4a22'],['Teal','#0f5257']];
+const RT=['parent','child','sibling','spouse','romantic','friend','rival','enemy','ally','mentor','disciple','other'];
+/* ---------- storage (IndexedDB, saved automatically) ---------- */
+const idb=()=>new Promise((ok,no)=>{const r=indexedDB.open('requiem-web',1);r.onupgradeneeded=()=>r.result.createObjectStore('kv');r.onsuccess=()=>ok(r.result);r.onerror=()=>no(r.error)});
+const load=async()=>{try{const db=await idb();return await new Promise(ok=>{const q=db.transaction('kv').objectStore('kv').get('state');q.onsuccess=()=>ok(q.result);q.onerror=()=>ok(null)})}catch(e){return null}};
+let timer;const save=()=>{clearTimeout(timer);timer=setTimeout(flush,500)};
+const flush=async()=>{clearTimeout(timer);try{const db=await idb();await new Promise((ok,no)=>{const t=db.transaction('kv','readwrite');t.objectStore('kv').put(JSON.parse(JSON.stringify(S)),'state');t.oncomplete=ok;t.onerror=()=>no(t.error)});const s=$('#sv');if(s)s.textContent='saved ✓'}catch(e){const s=$('#sv');if(s)s.textContent='could not save!'}};
+addEventListener('pagehide',flush);document.addEventListener('visibilitychange',()=>{if(document.hidden)flush()});
+/* ---------- helpers ---------- */
+function clean(h){const d=new DOMParser().parseFromString('<body>'+(h||''),'text/html');d.querySelectorAll('script,style,iframe,object,embed,link,meta,form,input').forEach(n=>n.remove());d.body.querySelectorAll('*').forEach(n=>[...n.attributes].forEach(a=>{if(/^on/i.test(a.name)||/javascript:/i.test(a.value))n.removeAttribute(a.name)}));return d.body.innerHTML}
+const streak=()=>{let n=0,d=new Date(Date.now()-new Date().getTimezoneOffset()*6e4);if(!S.log[d.toISOString().slice(0,10)])d.setDate(d.getDate()-1);while(S.log[d.toISOString().slice(0,10)]>0){n++;d.setDate(d.getDate()-1)}return n};
+const download=(name,text,type)=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([text],{type}));a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),2000)};
+const book=id=>S.books.find(b=>b.id===id),chap=id=>S.chapters.find(c=>c.id===id),ch=id=>S.chars.find(c=>c.id===id);
+const bookChaps=id=>S.chapters.filter(c=>c.book===id);
+/* ---------- views ---------- */
+function shelf(){app.innerHTML=`<h1>Your shelf</h1><p class="soft">✍️ ${S.log[today()]||0} words today · 🔥 ${streak()}-day streak</p>
+<div class="shelf">${S.books.map(b=>`<a class="cover" href="#/book/${b.id}" data-a="open" style="--c:${b.color}"><b>${esc(b.title)}</b><small>${bookChaps(b.id).length} chapters</small></a>`).join('')}<button class="cover add" data-a="toggle" data-t="nb">+<small>New book</small></button></div>
+<form class="card" id="nb" data-f="book" hidden><label>Title</label><input name="title" required maxlength="120"><label>Cover</label><select name="color">${COLORS.map(c=>`<option value="${c[1]}">${c[0]}</option>`).join('')}</select><button>Add book</button></form>`}
+function bookView(id,tab){const b=book(id);if(!b)return go('/');tab=tab||'ch';const cs=bookChaps(id);
+let body;if(tab==='ch')body=cs.map((c,i)=>`<div class="row"><span class="soft">${i+1}</span><a class="t" href="#/chapter/${c.id}">${esc(c.title)}<br><small class="soft">${words(c.html)} words</small></a><button class="g" data-a="up" data-id="${c.id}">↑</button><button class="g" data-a="dn" data-id="${c.id}">↓</button><button class="g" data-a="rc" data-id="${c.id}">✎</button><button class="g" data-a="dc" data-id="${c.id}">🗑</button></div>`).join('')+`<form class="card" data-f="chapter" data-id="${id}"><label>New chapter</label><input name="title" required maxlength="120" placeholder="Chapter title"><button>+ Add chapter</button></form>`;
+else{const mine=S.chars.filter(c=>c.books.includes(id)),rest=S.chars.filter(c=>!c.books.includes(id));body=`<div class="g2">${mine.map(charCard).join('')||'<p class="soft">No characters in this book yet.</p>'}</div>`+(rest.length?`<form class="card" data-f="attach" data-id="${id}"><label>Add a character you already have</label><select name="c">${rest.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('')}</select><button>Add to this book</button></form>`:'')+`<form class="card" data-f="char" data-id="${id}"><label>New character in this book</label><input name="name" required maxlength="80" placeholder="Name"><button>+ Create</button></form>`}
+app.innerHTML=`<p><a href="#/">← Shelf</a></p><h1>${esc(b.title)}</h1><div class="tabs"><a class="${tab==='ch'?'on':''}" href="#/book/${id}">Chapters</a><a class="${tab==='cc'?'on':''}" href="#/book/${id}/cc">Characters</a></div>${body}<p><button class="g" data-a="eb" data-id="${id}">⬇ Export book (HTML)</button> <button class="g" data-a="rb" data-id="${id}">Rename</button> <button class="d" data-a="db" data-id="${id}">Delete book</button></p>`}
+function chapterView(id){const c=chap(id);if(!c)return go('/');const b=book(c.book),l=bookChaps(c.book),i=l.indexOf(c);c.w=c.w??words(c.html);
+const T=[['bold','B'],['italic','I'],['underline','U'],['formatBlock:h3','H'],['formatBlock:blockquote','❝'],['formatBlock:p','¶'],['undo','↶'],['redo','↷']];
+app.innerHTML=`<p><a href="#/book/${b.id}">← ${esc(b.title)}</a></p><h2>${esc(c.title)}</h2><div class="tools">${T.map(t=>`<button class="g" data-cmd="${t[0]}">${t[1]}</button>`).join('')}</div><div id="ed" class="ed" contenteditable="true" spellcheck="true">${clean(c.html)}</div><p class="soft"><span id="wc">${words(c.html)}</span> words · <span id="sv">saved ✓</span></p><p>${i>0?`<a class="btn g" href="#/chapter/${l[i-1].id}">← Previous</a> `:''}${i<l.length-1?`<a class="btn" href="#/chapter/${l[i+1].id}">Next →</a>`:''}</p>`;
+const ed=$('#ed');ed.oninput=()=>{c.html=ed.innerHTML;const w=words(c.html);S.log[today()]=(S.log[today()]||0)+Math.max(0,w-c.w);c.w=w;$('#wc').textContent=w;$('#sv').textContent='saving…';save()};
+ed.onpaste=e=>{e.preventDefault();document.execCommand('insertText',false,(e.clipboardData||window.clipboardData).getData('text/plain'))}}
+function charCard(c){return `<a class="card" href="#/char/${c.id}" style="text-decoration:none;color:inherit;display:block">${c.fav?'★ ':''}<b>${esc(c.name)}</b><br><small class="soft">${esc(c.role||'')}</small><br><span class="chip">${esc(c.status)}</span>${(c.tags||[]).slice(0,3).map(t=>`<span class="chip">#${esc(t)}</span>`).join('')}</a>`}
+let Q={q:'',fav:false,st:''};
+function chars(){const l=S.chars.filter(c=>(!Q.q||(c.name+' '+(c.role||'')+' '+(c.tags||[]).join(' ')).toLowerCase().includes(Q.q.toLowerCase()))&&(!Q.fav||c.fav)&&(!Q.st||c.status===Q.st)).sort((a,b)=>b.fav-a.fav||a.name.localeCompare(b.name));
+app.innerHTML=`<h1>Characters</h1><div class="card"><input id="q" placeholder="🔍 Search" value="${esc(Q.q)}"><select id="st"><option value="">Any status</option>${['idea','developing','complete'].map(s=>`<option ${Q.st===s?'selected':''}>${s}</option>`).join('')}</select><label class="i"><input type="checkbox" id="fv" ${Q.fav?'checked':''}> ⭐ Favourites only</label></div><div class="g2">${l.map(charCard).join('')||'<p class="soft">No characters yet.</p>'}</div><form class="card" data-f="char"><label>New character</label><input name="name" required maxlength="80" placeholder="Name"><button>+ Create</button></form>`;
+$('#q').oninput=e=>{Q.q=e.target.value;const p=e.target.selectionStart;chars();$('#q').focus();$('#q').setSelectionRange(p,p)};$('#st').onchange=e=>{Q.st=e.target.value;chars()};$('#fv').onchange=e=>{Q.fav=e.target.checked;chars()}}
+function charView(id){const c=ch(id);if(!c)return go('/chars');const rel=S.rels.filter(r=>r.a===id||r.b===id),others=S.chars.filter(x=>x.id!==id);
+const f=(k,l,t)=>`<label>${l}</label>${t==='ta'?`<textarea data-k="${k}" rows="5">${esc(c[k])}</textarea>`:`<input data-k="${k}" value="${esc(Array.isArray(c[k])?c[k].join(', '):c[k])}">`}`;
+app.innerHTML=`<p><a href="#/chars">← Characters</a></p><h1>${c.fav?'★ ':''}${esc(c.name)}</h1><div class="card">${f('name','Name')}${f('role','Role')}${f('species','Species')}<label>Status</label><select data-k="status">${['idea','developing','complete'].map(s=>`<option ${c.status===s?'selected':''}>${s}</option>`).join('')}</select>${f('tags','Tags (comma separated)')}${f('notes','Notes and backstory','ta')}<button class="g" data-a="fav" data-id="${id}">${c.fav?'★ Favourite':'☆ Make favourite'}</button></div>
+<div class="card"><h3>📚 Appears in</h3>${S.books.map(b=>`<label class="i"><input type="checkbox" data-bk="${b.id}" ${c.books.includes(b.id)?'checked':''}> ${esc(b.title)}</label>`).join('')||'<p class="soft">No books yet.</p>'}</div>
+<div class="card"><h3>💞 Relationships</h3>${rel.map(r=>{const o=ch(r.a===id?r.b:r.a);return `<div class="row"><span class="t">${r.a===id?'':esc(o?.name)+' → '}<b>${esc(r.t)}</b>${r.a===id?' → '+esc(o?.name):' → '+esc(c.name)}</span><button class="g" data-a="dr" data-id="${r.id}">✕</button></div>`}).join('')||'<p class="soft">None yet.</p>'}
+${others.length?`<form data-f="rel" data-id="${id}"><label>${esc(c.name)} is…</label><select name="t">${RT.map(t=>`<option>${t}</option>`).join('')}</select><label>…of / to</label><select name="o">${others.map(o=>`<option value="${o.id}">${esc(o.name)}</option>`).join('')}</select><button>+ Add</button></form>`:'<p class="soft">Create another character to link them.</p>'}</div>
+<button class="d" data-a="dch" data-id="${id}">Delete character</button>`;
+app.querySelectorAll('[data-k]').forEach(el=>el.onchange=()=>{const k=el.dataset.k;c[k]=k==='tags'?el.value.split(',').map(s=>s.trim()).filter(Boolean):el.value;if(k==='name'&&!el.value.trim())c.name='Unnamed';save();if(k==='name')$('h1').textContent=(c.fav?'★ ':'')+c.name});
+app.querySelectorAll('[data-bk]').forEach(el=>el.onchange=()=>{c.books=el.checked?[...new Set([...c.books,el.dataset.bk])]:c.books.filter(x=>x!==el.dataset.bk);save()})}
+function backup(){const n=S.books.length+' books, '+S.chapters.length+' chapters, '+S.chars.length+' characters';
+app.innerHTML=`<h1>Backup</h1><div class="card"><p>Your writing is saved <b>only on this device</b> (${n}). Clearing the browser's site data deletes it, so export a backup often and keep the file somewhere safe.</p><button data-a="ex">⬇ Export backup (.json)</button><label style="margin-top:1rem">Restore from a backup file (replaces what is here)</label><input type="file" id="im" accept=".json,application/json"></div><div class="card"><button class="g" data-a="inst" id="inst" hidden>📲 Install Requiem</button><p class="soft" id="ps"></p></div><div class="card"><button class="d" data-a="wipe">Erase everything on this device</button></div>`;
+navigator.storage?.persisted?.().then(p=>{$('#ps').textContent=p?'🔒 Storage is protected from automatic cleanup.':'Storage may be cleared by the browser if the phone runs low on space.'});if(deferred)$('#inst').hidden=false;
+$('#im').onchange=async e=>{try{const j=JSON.parse(await e.target.files[0].text());if(!Array.isArray(j.books)||!Array.isArray(j.chapters))throw 0;if(!confirm('Replace everything on this device with this backup?'))return;Object.assign(S,{books:[],chapters:[],chars:[],rels:[],log:{},set:{}},j);S.chars.forEach(c=>c.books=c.books||[]);await flush();theme();alert('Restored ✓');go('/')}catch(x){alert('That file is not a Requiem backup.')}}}
+/* ---------- actions ---------- */
+const go=p=>{location.hash='#'+p};let deferred;addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferred=e;const b=$('#inst');if(b)b.hidden=false});
+const A={toggle:(d,el)=>{const f=$('#'+d.t);f.hidden=!f.hidden;if(!f.hidden)f.querySelector('input').focus()},
+open:(d,el,e)=>{if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;e.preventDefault();const r=el.getBoundingClientRect(),o=document.createElement('div');o.className='ov';Object.assign(o.style,{left:r.left+'px',top:r.top+'px',width:r.width+'px',height:r.height+'px',background:getComputedStyle(el).backgroundImage});document.body.appendChild(o);o.getBoundingClientRect();o.classList.add('go');setTimeout(()=>{location.href=el.href;setTimeout(()=>o.remove(),300)},560)},
+up:d=>mv(d.id,-1),dn:d=>mv(d.id,1),
+rc:d=>{const c=chap(d.id),t=prompt('Chapter title',c.title);if(t&&t.trim()){c.title=t.trim();save();route()}},
+dc:d=>{if(confirm('Delete this chapter?')){S.chapters=S.chapters.filter(c=>c.id!==d.id);flush();route()}},
+rb:d=>{const b=book(d.id),t=prompt('Book title',b.title);if(t&&t.trim()){b.title=t.trim();save();route()}},
+db:d=>{if(confirm('Delete this book and its chapters? Characters are kept.')){S.chapters=S.chapters.filter(c=>c.book!==d.id);S.chars.forEach(c=>c.books=c.books.filter(x=>x!==d.id));S.books=S.books.filter(b=>b.id!==d.id);flush();go('/')}},
+eb:d=>{const b=book(d.id);download(b.title+'.html',`<!doctype html><meta charset="utf-8"><title>${esc(b.title)}</title><body style="font:18px/1.7 Georgia,serif;max-width:40rem;margin:2rem auto;padding:0 1rem"><h1>${esc(b.title)}</h1>${bookChaps(d.id).map(c=>`<h2>${esc(c.title)}</h2>${clean(c.html)}`).join('')}`,'text/html')},
+fav:d=>{const c=ch(d.id);c.fav=!c.fav;save();route()},
+dr:d=>{S.rels=S.rels.filter(r=>r.id!==d.id);save();route()},
+dch:d=>{if(confirm('Delete this character?')){S.chars=S.chars.filter(c=>c.id!==d.id);S.rels=S.rels.filter(r=>r.a!==d.id&&r.b!==d.id);flush();go('/chars')}},
+ex:()=>download('requiem-backup-'+today()+'.json',JSON.stringify(S),'application/json'),
+inst:async()=>{if(deferred){deferred.prompt();deferred=null}},
+wipe:async()=>{if(confirm('Erase ALL books, chapters and characters on this device?')&&confirm('This cannot be undone. Really erase?')){Object.assign(S,{books:[],chapters:[],chars:[],rels:[],log:{},set:S.set});await flush();go('/')}}};
+function mv(id,dir){const c=chap(id),l=bookChaps(c.book),j=S.chapters.indexOf(l[l.indexOf(c)+dir]);if(j<0)return;const i=S.chapters.indexOf(c);[S.chapters[i],S.chapters[j]]=[S.chapters[j],S.chapters[i]];save();route()}
+const F={book:f=>{const b={id:uid(),title:f.get('title').trim(),color:f.get('color')};S.books.push(b);flush();go('/book/'+b.id)},
+chapter:(f,el)=>{S.chapters.push({id:uid(),book:el.dataset.id,title:f.get('title').trim(),html:'',w:0});flush();route()},
+char:(f,el)=>{const c={id:uid(),name:f.get('name').trim(),role:'',species:'',status:'developing',tags:[],notes:'',fav:false,books:el.dataset.id?[el.dataset.id]:[]};S.chars.push(c);flush();go('/char/'+c.id)},
+attach:(f,el)=>{const c=ch(f.get('c'));if(c&&!c.books.includes(el.dataset.id))c.books.push(el.dataset.id);flush();route()},
+rel:(f,el)=>{S.rels.push({id:uid(),a:el.dataset.id,b:f.get('o'),t:f.get('t')});flush();route()}};
+app.addEventListener('click',e=>{const el=e.target.closest('[data-a]');if(el)A[el.dataset.a]?.(el.dataset,el,e);const m=e.target.closest('[data-cmd]');if(m){const[c,v]=m.dataset.cmd.split(':');$('#ed').focus();document.execCommand(c,false,v||null);$('#ed').oninput()}});
+['mousedown','touchstart'].forEach(t=>app.addEventListener(t,e=>{if(e.target.closest('[data-cmd]'))e.preventDefault()},{passive:false}));
+app.addEventListener('submit',e=>{e.preventDefault();const f=e.target;F[f.dataset.f]?.(new FormData(f),f)});
+/* ---------- router, theme, boot ---------- */
+function route(){const p=location.hash.slice(2).split('/');({book:()=>bookView(p[1],p[2]),chapter:()=>chapterView(p[1]),chars,char:()=>charView(p[1]),backup}[p[0]]||shelf)();if(!route.keep)scrollTo(0,0)}
+const theme=()=>{document.body.classList.toggle('light',!!S.set.light);$('#th').textContent=S.set.light?'☀️':'🌙'};
+$('#th').onclick=()=>{S.set.light=!S.set.light;theme();flush()};
+const hh=()=>document.documentElement.style.setProperty('--hh',$('header').offsetHeight+'px');addEventListener('resize',hh);hh();
+addEventListener('hashchange',route);
+(async()=>{const s=await load();if(s)Object.assign(S,s);S.chars.forEach(c=>c.books=c.books||[]);theme();route();navigator.storage?.persist?.();if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{})})();
+</script></body></html>
